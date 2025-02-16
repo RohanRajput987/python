@@ -1,0 +1,14 @@
+if __name__ == '__main__':
+    student=[]
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        student.append([name,score])
+    
+    score=sorted(set([score for name, score in student]))
+    second_lowest=score[1]
+    
+    names=sorted([name for name,score in student if score==second_lowest])
+    
+    for name in names:
+        print(name)
