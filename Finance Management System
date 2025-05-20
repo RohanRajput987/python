@@ -1,0 +1,65 @@
+class Transcation:
+    def __init__(self,description,amount):
+        self.description = description
+        self.amount = amount
+    def __str__(self):
+        return f"Transaction(description:{self.description},amount:{self.amount})"
+    
+class FinanceManagmentSystem:
+    def __init__(self):
+        self.balance =0.0
+        self.transcations=[]
+    
+    def add_income(self):
+        description = input("Enter income description: ")
+        amount = float(input("Enter Income amount: "))
+
+        self.balance += amount
+        self.transcations.append(Transcation(description,amount))
+        print(f"Income'{description}' added successfully!\n" )
+
+    def add_expenses(self):
+        description = input("Enter expense description: ")
+        amount=float(input("Enter expense amount: "))
+
+        self.balance -= amount
+        self.transcations.append(Transcation(description,amount))
+        print(f"Expenses '{description}' added successfully!\n")
+
+    def view_transcation(self):
+        if not self.transcations:
+            print("No transcations available.\n")
+        else:
+            for transcation in self.transcations:
+                print(transcation)
+            print()
+    
+    def view_balance(self):
+        print(f"Current Balance :'{self.balance}'\n")
+
+    def run(self):
+        while True:
+            print("Finance Management System")
+            print("1.Add Income")
+            print("2.Add Expense")
+            print("3.View Transcations")
+            print("4.View Balance")
+            print("5.Exit")
+
+            choice=input("Enter your choice: ")
+            if choice == '1':
+                self.add_income()
+            elif choice == '2':
+                self.add_expenses()
+            elif choice == '3':
+                self.view_transcation()
+            elif choice == '4':
+                self.view_balance()
+            elif choice == '5':
+                print("Exiting the System.Goodbye! \n" )
+                break
+            else:
+                print("Invalid choice.Please try again.\n")
+if __name__ == "__main__":
+    fms = FinanceManagmentSystem()
+    fms.run()
